@@ -389,7 +389,7 @@
             this.txtProjectPath.Name = "txtProjectPath";
             this.txtProjectPath.Size = new System.Drawing.Size(211, 21);
             this.txtProjectPath.TabIndex = 8;
-            this.txtProjectPath.Text = "D:";
+            this.txtProjectPath.Text = "D:\\";
             // 
             // label5
             // 

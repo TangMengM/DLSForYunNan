@@ -47,9 +47,10 @@ namespace DLS
         /// </summary>
         public void CBX_Risk_Bind()
         {
-            cbx_risk.Items.Add("高风险");
-            cbx_risk.Items.Add("中风险");
             cbx_risk.Items.Add("低风险");
+            cbx_risk.Items.Add("中风险");
+            cbx_risk.Items.Add("高风险");
+            cbx_risk.Text = "低风险";
         }
 
         public void CBX_Scene_Bind()
@@ -1109,9 +1110,8 @@ namespace DLS
                             break;
                     }
                     break;
-
-                default: strInputFromPath = strFromPath + "\\highRisk_basic";
-                    break;
+                //default: strInputFromPath = strFromPath + "\\highRisk_basic";
+                    //break;
             }
             return strInputFromPath;
 
@@ -1130,12 +1130,13 @@ namespace DLS
                 return;
             }
             
-            string sRiskType = this.cbx_risk.SelectedText;
-            string sSceneType = this.cbx_scene.SelectedText;
+            string sRiskType = this.cbx_risk.Text.Trim();
+            string sSceneType = this.cbx_scene.Text.Trim();
             string sFromPath = getFromPath(sRiskType, sSceneType);
 
             string sToPath = this.txtProjectPath.Text + "RunDLS\\DLS\\Input";
             FileMove(sFromPath, sToPath);
+            MessageBox.Show("参数提取完毕！");
             
         }
 
