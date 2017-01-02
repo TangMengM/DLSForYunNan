@@ -96,9 +96,6 @@ namespace DLS
             {
                 if (pMap.get_Layer(i) is RasterLayer)
                 {
-                    lsbLayerAll.Items.Add(pMap.get_Layer(i).Name);
-                    cmbBoundary.Items.Add(pMap.get_Layer(i).Name);
-                    cmbRstraint.Items.Add(pMap.get_Layer(i).Name);
                 }
             }
         }
@@ -195,59 +192,6 @@ namespace DLS
             }
         }
 
-        private void btnAddY_Click(object sender, EventArgs e)
-        {
-            if (lsbLayerAll.Items.Count == 0)
-                return;
-            //一次只能选择一个数据
-            if (lsbLayerAll.SelectedItems.Count > 1)
-            {
-                MessageBox.Show(this, "土地利用数据只能选择一个图层数据" , "提示");
-                return;
-            }
-            if (lsbLayerAll.SelectedItem == null)
-                return;
-            //如果lsbLayerLandUse不为空，先移动原有的到lsbLayerAll，
-            //再将lsbLayerAll选择的移动到lsbLayerLandUse
-            if (lsbLayerLandUse.Items.Count == 1)
-            {
-                this.lsbLayerAll.Items.Add(this.lsbLayerLandUse.Items[0]);
-                this.lsbLayerLandUse.Items.RemoveAt(0);
-            }
-
-            this.lsbLayerLandUse.Items.Add(this.lsbLayerAll.SelectedItem);
-            this.lsbLayerAll.Items.Remove(lsbLayerAll.SelectedItem);
-        }
-
-        private void btnAddX_Click(object sender, EventArgs e)
-        {
-            if (lsbLayerAll.Items.Count == 0)
-                return;
-            if (lsbLayerAll.SelectedItem == null)
-                return;
-            //lsbLayerAll与lsbLayerDriverFactor 可多选SelectMode=MultiSimple）
-            //lsbLayerAll与lsbLayerDriverFactor 排序
-            for (int i = 0; i < lsbLayerAll.SelectedItems.Count; i++)
-            {
-                //将lsbLayerAll选择的X移动到lsbLayerLandUse
-                this.lsbLayerDriverFactor.Items.Add(this.lsbLayerAll.SelectedItems[i]);
-                this.lsbLayerAll.Items.Remove(lsbLayerAll.SelectedItems[i]);
-            }
-        }
-
-        private void btnRemoveX_Click(object sender, EventArgs e)
-        {
-            if (lsbLayerDriverFactor.Items.Count == 0)
-                return;
-            if (lsbLayerDriverFactor.SelectedItem == null)
-                return;
-            for (int i = 0; i < lsbLayerDriverFactor.SelectedItems.Count; i++)
-            {
-                //将lsbLayerAll选择的X移动到lsbLayerLandUse
-                this.lsbLayerAll.Items.Add(this.lsbLayerDriverFactor.SelectedItems[i]);
-                this.lsbLayerDriverFactor.Items.Remove(lsbLayerDriverFactor.SelectedItems[i]);
-            }
-        }
 
         private void btnBoundary_Click(object sender, EventArgs e)
         {
@@ -324,20 +268,7 @@ namespace DLS
         {
             //if (this.strProjectPath.Trim() == "")
             //    return;
-            if (this.cmbBoundary.Text.Trim() == "")
-            {
-                MessageBox.Show("请添加边界数据！","提示！",MessageBoxButtons.OK);
-                return;
-            }
-            if (this.cmbRstraint.Text.Trim() == "")
-            {
-                MessageBox.Show("请添加限制区域数据！", "提示！", MessageBoxButtons.OK);
-                return;
-            }
-            //if (this.txtParameter.Text.Trim() == "")
-            //    return;
-            if (lsbLayerLandUse.Items.Count == 0)
-                return;
+            
             //if (lsbLayerDriverFactor.Items.Count == 0)
             //    return;
 
@@ -358,36 +289,8 @@ namespace DLS
             
             //try
             //{
-                string sLyrMask = this.cmbBoundary.Text;
+                
 
-                //boundaty-->mask
-                for (int i = 0; i < pMap.LayerCount; i++)
-                {
-                    ILayer pLyr = pMap.get_Layer(i);
-                    if (pLyr is IRasterLayer)
-                    {
-                        if (pLyr.Name == sLyrMask)
-                        {
-                            IRasterProps pRasterP = (pLyr as IRasterLayer).Raster as IRasterProps;
-                            cellSize = pRasterP.MeanCellSize().X;
-                            pGdsMask = (pLyr as IRasterLayer).Raster as IGeoDataset;
-                        }
-                    }
-                }
-
-                //data
-                //限制区
-                string sLyrRstraint = this.cmbRstraint.Text;
-                //土地利用数据
-                string sLyrLanduse = this.lsbLayerLandUse.Items[0].ToString();
-
-                // 土地利用数据与驱动因子 数据名称(去除格式名)
-                // 顺序不能改变  后面 ITable2DTable 使用这个列表进行了名称替换
-                lsbNames.Add(sLyrLanduse.Remove(sLyrLanduse.LastIndexOf(".")));
-                foreach (string name in lsbLayerDriverFactor.Items)
-                {
-                    lsbNames.Add(name.Remove(name.LastIndexOf("."))); //去除文件格式 
-                }
                
                 //驱动因子
                 //string[] arr = new string[this.lsbLayerDriverFactor.Items.Count];
@@ -397,135 +300,10 @@ namespace DLS
                 //    arr[i]=this.lsbLayerDriverFactor.Items[i].ToString();
                 //}
                 
-                for (int i = 0; i < pMap.LayerCount; i++)
-                {
-                    ILayer pLyr = pMap.get_Layer(i);
-                    if (pLyr is IRasterLayer)
-                    {
-                        //IRaster curRaster = new RasterClass();
-                        if (pLyr.Name == sLyrRstraint)
-                        {
-                            //curRaster = (pLyr as IRasterLayer).Raster;
-                            //(pLyr as IRasterLayer).Raster.
-                            pGdsRstraint = (pLyr as IRasterLayer).Raster as IGeoDataset;
-
-
-                            //限制数据 region.grid
-                            string ascFileNameRstraint = strProjectPath + "\\region.grid";
-                            Rater2Ascii(pGdsMask,cellSize , pGdsRstraint, ascFileNameRstraint);
-                        }
-                        
-                        //土地利用数据
-                        if (pLyr.Name == sLyrLanduse)
-                        {
-                            this.rtxtState.AppendText("读取土地利用参数数据...\n");
-                            this.rtxtState.ScrollToCaret();
-                            
-                            //curRaster = (pLyr as IRasterLayer).Raster;
-                            pGdsLanduse = (pLyr as IRasterLayer).Raster as IGeoDataset;
-                            //land use 添加到 IRasterBandCollection
-                            IRasterBandCollection rasterbands = (IRasterBandCollection)(pLyr as IRasterLayer).Raster;
-                            IRasterBand rasterband = rasterbands.Item(0);
-                            pRasterBandColection.AppendBand(rasterband);
-
-                            //pRasterBandColection = curRaster as IRasterBandCollection;
-                            //pRasterBandColection.AppendBand(pRaster as IRasterBand);
-
-                            string ascFileNameLanduse = strProjectPath + "\\cov1_all.0";
-                            //cov1_0.0;cov1_1.0;
-                            Rater2Ascii(pGdsMask, cellSize, pGdsLanduse, ascFileNameLanduse);
-                            //
-
-
-                            //将土地利用数据拆分
-
-                            StreamReader sr = new StreamReader(ascFileNameLanduse, System.Text.Encoding.Default);
-                            //try
-                            //{
-
-                            //使用StreamReader类来读取文件
-                            sr.BaseStream.Seek(0, SeekOrigin.Begin);
-                            // 从数据流中读取每一行，直到文件的最后一行，并在richTextBox1中显示出内容
-                            //读取头文件
-                            string[] header = new string[6];
-
-                            for (int j = 0; j < 6; j++)
-                            {
-                                header[j] = sr.ReadLine();
-                            }
-                            //行列数
-                            string[] ncols = header[0].Split(' ');
-                            string[] nrows = header[1].Split(' ');
-                            int icol = int.Parse(ncols[ncols.Length - 1]);
-                            int irow = int.Parse(nrows[nrows.Length - 1]);
-
-                            int[,] iLanduse = new int[irow, icol];
-                            //
-                            string strLine = sr.ReadLine();
-                            string[] strData;
-                            int ir = 0;
-                            while (ir < irow)
-                            //while (strLine != null)
-                            {
-                                strData = strLine.Split(' ');
-                                for (int ic = 0; ic < icol; ic++)
-                                {
-                                    iLanduse[ir, ic] = int.Parse(strData[ic]);
-                                }
-                                strLine = sr.ReadLine();
-                                ir++;
-                            }
-                            //关闭此StreamReader对象
-                            sr.Close();
-                            //输出相应的土地利用数据
-                            DataTable2Txt(header, iLanduseType, iLanduse, strProjectPath);
-
-                            //}
-                            //catch (Exception ex)
-                            //{
-                            //MessageBox.Show(ex.Message);
-                            sr.Close();
-                            //}
-                        }
-                    }
-                }
                 this.rtxtState.AppendText("输出土地利用参数数据成功。\n");
                 this.rtxtState.AppendText("读取驱动因子数据...\n");
                 this.rtxtState.ScrollToCaret();
-                for (int ifac = 0; ifac < lsbLayerDriverFactor.Items.Count; ifac++)
-                {
-                    for (int i = 0; i < pMap.LayerCount; i++)
-                    {
-                        ILayer pLyr = pMap.get_Layer(i);
-                        if (pLyr is IRasterLayer)
-                        {
-                        //输出驱动因子数据  sc1gr0.grid
-                       
-                            string sFacName = lsbLayerDriverFactor.Items[ifac].ToString();
-                            if (pLyr.Name == sFacName)
-                            {
-                                //IRaster curRaster = new RasterClass();  
-                                //curRaster = (pLyr as IRasterLayer).Raster;
-                                pGdsDriverFactor = (pLyr as IRasterLayer).Raster as IGeoDataset;
 
-                                string ascFileNameFac = strProjectPath + "\\sc1gr"+ifac.ToString()+".grid";
-                                //cov1_0.0;cov1_1.0;
-                                this.rtxtState.AppendText("输出驱动因子数据【" + sFacName + "】\n");
-                                //IGeoDataset curMask = null;
-                                //curMask = pGdsMask;
-                                Rater2Ascii(pGdsMask, cellSize, pGdsDriverFactor, ascFileNameFac);
-                                this.rtxtState.AppendText("输出驱动因子数据【" + sFacName + "】成功。\n");
-                                this.rtxtState.ScrollToCaret();
-                                //mask 添加到 IRasterBandCollection
-                                IRasterBandCollection rasterbands = (IRasterBandCollection)(pLyr as IRasterLayer).Raster;
-                                IRasterBand rasterband = rasterbands.Item(0);
-                                pRasterBandColection.AppendBand(rasterband);
-                                //pRasterBandColection.Add(pRaster as IRasterBand,ifac+1);
-
-                            }
-                        }
-                    }
-                }
                 this.rtxtState.AppendText("开始制备驱动因子参数...\n");
                 this.rtxtState.ScrollToCaret();
 
@@ -563,10 +341,7 @@ namespace DLS
                 LogisticRegressionAnalysis lra;
                 // Gets the columns of the independent variables
                 List<string> names = new List<string>();
-                foreach (string name in lsbLayerDriverFactor.Items)
-                {
-                    names.Add(name.Remove(name.LastIndexOf("."))); //去除文件格式  
-                } 
+
                 
 
                 String[] independentNames = names.ToArray();
@@ -579,7 +354,6 @@ namespace DLS
                 for(int ild=0; ild< iLanduseType; ild++)
                 {
                     
-                    String landuseName = (string)this.lsbLayerLandUse.Items[0].ToString();
                     this.rtxtState.AppendText("开始制备土地利用类型【" + ild.ToString() + "】驱动因子参数...\n");
                     this.rtxtState.ScrollToCaret();
                     DataColumn taxColumn =new DataColumn(); 
@@ -626,18 +400,8 @@ namespace DLS
                             number++;
                         //}
                     }
-                    RegressionResult.Items.Add(st);
-                    RegressionResult.Items.Add("\t" + Math.Round(lra.CoefficientValues[1], 6));
-                    RegressionResult.Items.Add(number);
+
                     int var_number = 0;
-                    for (int i = 0; i < Relength; i++)//改过了0=1
-                    {
-                        //if ( < 0.05)
-                        //{
-                        RegressionResult.Items.Add("\t" + Math.Round(lra.CoefficientValues[i], 6) + "\t" + var_number);
-                        //}
-                        var_number = var_number + 1;
-                    }
 
                     // 保存alloc1.reg 文件
                     sw.WriteLine(st);
@@ -1134,7 +898,7 @@ namespace DLS
             string sSceneType = this.cbx_scene.Text.Trim();
             string sFromPath = getFromPath(sRiskType, sSceneType);
 
-            string sToPath = this.txtProjectPath.Text + "RunDLS\\DLS\\Input";
+            string sToPath = this.txtProjectPath.Text + "\\RunDLS\\DLS\\Input";
             FileMove(sFromPath, sToPath);
             MessageBox.Show("参数提取完毕！");
             
@@ -1362,7 +1126,7 @@ namespace DLS
                 MessageBox.Show("请选择工程位置路径！");
                 return;
             }
-            string sOutPut = this.txtProjectPath.Text + "RunDLS\\DLS\\Output";
+            string sOutPut = this.txtProjectPath.Text + "\\RunDLS\\DLS\\Output";
             System.IO.DirectoryInfo di = new System.IO.DirectoryInfo(sOutPut);
             if (di.GetFiles().Length + di.GetDirectories().Length == 0)
             {
