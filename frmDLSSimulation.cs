@@ -98,6 +98,52 @@ namespace DLS
                 {
                 }
             }
+
+            //设置滑块属性
+            //耕地滑块
+            trackBarCult.Minimum = 0;
+            trackBarCult.Maximum = 300;
+            trackBarCult.TickFrequency = 25;
+            trackBarCult.SmallChange = 5;
+            trackBarCult.LargeChange = 25;
+            trackBarCult.Value = 118;
+            //林地滑块
+            trackBarFore.Minimum = 0;
+            trackBarFore.Maximum = 600;
+            trackBarFore.TickFrequency = 25;
+            trackBarFore.SmallChange = 5;
+            trackBarFore.LargeChange = 25;
+            trackBarFore.Value = 394;
+            //草地滑块
+            trackBarGrass.Minimum = 0;
+            trackBarGrass.Maximum = 900;
+            trackBarGrass.TickFrequency = 25;
+            trackBarGrass.SmallChange = 5;
+            trackBarGrass.LargeChange = 25;
+            trackBarGrass.Value = 711;
+            //水域滑块
+            trackBarWater.Minimum = 0;
+            trackBarWater.Maximum = 300;
+            trackBarWater.TickFrequency = 25;
+            trackBarWater.SmallChange = 5;
+            trackBarWater.LargeChange = 25;
+            //水域值固定为208
+            trackBarWater.Value = 208;
+            //建设用地滑块
+            trackBarBuild.Minimum = 0;
+            trackBarBuild.Maximum = 500;
+            trackBarBuild.TickFrequency = 25;
+            trackBarBuild.SmallChange = 5;
+            trackBarBuild.LargeChange = 25;
+            trackBarBuild.Value = 306;
+
+            labelCul.Text = trackBarCult.Value.ToString()+" 平方千米";
+            labelFor.Text = trackBarFore.Value.ToString() + " 平方千米";
+            labelGar.Text = trackBarGrass.Value.ToString() + " 平方千米";
+            labelWat.Text = trackBarWater.Value.ToString() + " 平方千米";
+            labelBui.Text = trackBarBuild.Value.ToString() + " 平方千米";
+
+
         }
 
         private void btnSimulation_Click(object sender, EventArgs e)
@@ -279,13 +325,8 @@ namespace DLS
             IRaster pRaster = new RasterClass();
 
             IGeoDataset pGdsMask = null;
-            IGeoDataset pGdsRstraint = null;
-            IGeoDataset pGdsLanduse = null;
-            IGeoDataset pGdsDriverFactor = null;
             IRasterBandCollection pRasterBandColection=(new RasterClass()) as IRasterBandCollection;
 
-            //读取
-            double cellSize = 1000;
             
             //try
             //{
@@ -400,8 +441,6 @@ namespace DLS
                             number++;
                         //}
                     }
-
-                    int var_number = 0;
 
                     // 保存alloc1.reg 文件
                     sw.WriteLine(st);
@@ -723,6 +762,8 @@ namespace DLS
         /// <param name="e"></param>
         private void btnDemandSave_Click(object sender, EventArgs e)
         {
+            sLandUseDemand = trackBarCult.Value.ToString() + " " + trackBarFore.Value.ToString() + " " + trackBarGrass.Value.ToString() + " " + trackBarWater.Value.ToString() + " " + trackBarBuild.Value.ToString();
+            txtDemand.Text = txtDemand.Text + System.Environment.NewLine + sLandUseDemand;
             try
             {
                 SaveFileDialog sfdDemand = new SaveFileDialog();
@@ -874,8 +915,8 @@ namespace DLS
                             break;
                     }
                     break;
-                //default: strInputFromPath = strFromPath + "\\highRisk_basic";
-                    //break;
+                default: strInputFromPath = strFromPath + "\\highRisk_basic";
+                    break;
             }
             return strInputFromPath;
 
@@ -1195,6 +1236,64 @@ namespace DLS
             this.Close();
 
         }
+        int sum1,sum2,sum3;
+        string sLandUseDemand;
+
+        private void trackBarBuild_Scroll(object sender, EventArgs e)
+        {
+            sum1 = 1529 - trackBarBuild.Value;
+            trackBarCult.Value = sum1 * 1 / 12;
+            trackBarFore.Value = sum1 * 4 / 12;
+            trackBarGrass.Value = sum1 * 7 / 12;
+            labelCul.Text = trackBarCult.Value.ToString() + " 平方千米";
+            labelFor.Text = trackBarFore.Value.ToString() + " 平方千米";
+            labelGar.Text = trackBarGrass.Value.ToString() + " 平方千米";
+            labelWat.Text = trackBarWater.Value.ToString() + " 平方千米";
+            labelBui.Text = trackBarBuild.Value.ToString() + " 平方千米";
+        }
+
+        private void trackBarFore_Scroll(object sender, EventArgs e)
+        {
+            sum2 = sum1 - trackBarFore.Value;
+            trackBarCult.Value = sum2 * 1 / 8;
+            trackBarGrass.Value = sum2 * 7 / 8;
+            labelCul.Text = trackBarCult.Value.ToString() + " 平方千米";
+            labelFor.Text = trackBarFore.Value.ToString() + " 平方千米";
+            labelGar.Text = trackBarGrass.Value.ToString() + " 平方千米";
+            labelWat.Text = trackBarWater.Value.ToString() + " 平方千米";
+            labelBui.Text = trackBarBuild.Value.ToString() + " 平方千米";
+        }
+
+        private void trackBarGrass_Scroll(object sender, EventArgs e)
+        {
+            sum3 = sum2 - trackBarGrass.Value;
+            trackBarCult.Value = sum3 * 1 / 1;
+            labelCul.Text = trackBarCult.Value.ToString() + " 平方千米";
+            labelFor.Text = trackBarFore.Value.ToString() + " 平方千米";
+            labelGar.Text = trackBarGrass.Value.ToString() + " 平方千米";
+            labelWat.Text = trackBarWater.Value.ToString() + " 平方千米";
+            labelBui.Text = trackBarBuild.Value.ToString() + " 平方千米";
+        }
+
+        private void trackBarCult_Scroll(object sender, EventArgs e)
+        {
+            labelCul.Text = trackBarCult.Value.ToString() + " 平方千米";
+            labelFor.Text = trackBarFore.Value.ToString() + " 平方千米";
+            labelGar.Text = trackBarGrass.Value.ToString() + " 平方千米";
+            labelWat.Text = trackBarWater.Value.ToString() + " 平方千米";
+            labelBui.Text = trackBarBuild.Value.ToString() + " 平方千米";
+        }
+
+        private void trackBarWater_Scroll(object sender, EventArgs e)
+        {
+            trackBarWater.Value = 208;
+            labelCul.Text = trackBarCult.Value.ToString() + " 平方千米";
+            labelFor.Text = trackBarFore.Value.ToString() + " 平方千米";
+            labelGar.Text = trackBarGrass.Value.ToString() + " 平方千米";
+            labelWat.Text = trackBarWater.Value.ToString() + " 平方千米";
+            labelBui.Text = trackBarBuild.Value.ToString() + " 平方千米";
+        }
+
 
         
     }

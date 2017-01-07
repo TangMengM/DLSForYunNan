@@ -42,8 +42,24 @@
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.rtxtState = new System.Windows.Forms.RichTextBox();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.labelBui = new System.Windows.Forms.Label();
             this.btnDemandOpen = new System.Windows.Forms.Button();
             this.btnDemandSave = new System.Windows.Forms.Button();
+            this.labelWat = new System.Windows.Forms.Label();
+            this.labelGar = new System.Windows.Forms.Label();
+            this.labelFor = new System.Windows.Forms.Label();
+            this.labelCul = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.trackBarBuild = new System.Windows.Forms.TrackBar();
+            this.trackBarWater = new System.Windows.Forms.TrackBar();
+            this.trackBarGrass = new System.Windows.Forms.TrackBar();
+            this.trackBarFore = new System.Windows.Forms.TrackBar();
+            this.label1 = new System.Windows.Forms.Label();
+            this.trackBarCult = new System.Windows.Forms.TrackBar();
             this.label10 = new System.Windows.Forms.Label();
             this.txtDemand = new System.Windows.Forms.RichTextBox();
             this.cbx_risk = new System.Windows.Forms.ComboBox();
@@ -56,6 +72,12 @@
             this.groupBox5.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.groupBox7.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarBuild)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarWater)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarGrass)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarFore)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarCult)).BeginInit();
             this.groupBox8.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -115,7 +137,7 @@
             // 
             // btnSimulation
             // 
-            this.btnSimulation.Location = new System.Drawing.Point(120, 90);
+            this.btnSimulation.Location = new System.Drawing.Point(120, 126);
             this.btnSimulation.Name = "btnSimulation";
             this.btnSimulation.Size = new System.Drawing.Size(100, 28);
             this.btnSimulation.TabIndex = 16;
@@ -165,9 +187,9 @@
             // groupBox6
             // 
             this.groupBox6.Controls.Add(this.rtxtState);
-            this.groupBox6.Location = new System.Drawing.Point(309, 284);
+            this.groupBox6.Location = new System.Drawing.Point(871, 228);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(402, 104);
+            this.groupBox6.Size = new System.Drawing.Size(342, 123);
             this.groupBox6.TabIndex = 17;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "5.状态窗口";
@@ -180,27 +202,60 @@
             this.rtxtState.Location = new System.Drawing.Point(3, 17);
             this.rtxtState.Name = "rtxtState";
             this.rtxtState.ReadOnly = true;
-            this.rtxtState.Size = new System.Drawing.Size(396, 84);
+            this.rtxtState.Size = new System.Drawing.Size(336, 103);
             this.rtxtState.TabIndex = 18;
             this.rtxtState.Text = "";
             // 
             // groupBox7
             // 
-            this.groupBox7.Controls.Add(this.btnDemandOpen);
-            this.groupBox7.Controls.Add(this.btnDemandSave);
+            this.groupBox7.Controls.Add(this.groupBox3);
             this.groupBox7.Controls.Add(this.label10);
             this.groupBox7.Controls.Add(this.txtDemand);
             this.groupBox7.Location = new System.Drawing.Point(307, 12);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(410, 129);
+            this.groupBox7.Size = new System.Drawing.Size(558, 339);
             this.groupBox7.TabIndex = 18;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "3.用地需求";
             // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.labelBui);
+            this.groupBox3.Controls.Add(this.btnDemandOpen);
+            this.groupBox3.Controls.Add(this.btnDemandSave);
+            this.groupBox3.Controls.Add(this.labelWat);
+            this.groupBox3.Controls.Add(this.labelGar);
+            this.groupBox3.Controls.Add(this.labelFor);
+            this.groupBox3.Controls.Add(this.labelCul);
+            this.groupBox3.Controls.Add(this.label7);
+            this.groupBox3.Controls.Add(this.label6);
+            this.groupBox3.Controls.Add(this.label3);
+            this.groupBox3.Controls.Add(this.label2);
+            this.groupBox3.Controls.Add(this.trackBarBuild);
+            this.groupBox3.Controls.Add(this.trackBarWater);
+            this.groupBox3.Controls.Add(this.trackBarGrass);
+            this.groupBox3.Controls.Add(this.trackBarFore);
+            this.groupBox3.Controls.Add(this.label1);
+            this.groupBox3.Controls.Add(this.trackBarCult);
+            this.groupBox3.Location = new System.Drawing.Point(8, 15);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(544, 305);
+            this.groupBox3.TabIndex = 24;
+            this.groupBox3.TabStop = false;
+            // 
+            // labelBui
+            // 
+            this.labelBui.AutoSize = true;
+            this.labelBui.Location = new System.Drawing.Point(394, 23);
+            this.labelBui.Name = "labelBui";
+            this.labelBui.Size = new System.Drawing.Size(47, 12);
+            this.labelBui.TabIndex = 14;
+            this.labelBui.Text = "label13";
+            // 
             // btnDemandOpen
             // 
             this.btnDemandOpen.Image = ((System.Drawing.Image)(resources.GetObject("btnDemandOpen.Image")));
-            this.btnDemandOpen.Location = new System.Drawing.Point(372, 20);
+            this.btnDemandOpen.Location = new System.Drawing.Point(381, 264);
             this.btnDemandOpen.Name = "btnDemandOpen";
             this.btnDemandOpen.Size = new System.Drawing.Size(27, 27);
             this.btnDemandOpen.TabIndex = 8;
@@ -210,12 +265,133 @@
             // btnDemandSave
             // 
             this.btnDemandSave.Image = ((System.Drawing.Image)(resources.GetObject("btnDemandSave.Image")));
-            this.btnDemandSave.Location = new System.Drawing.Point(372, 53);
+            this.btnDemandSave.Location = new System.Drawing.Point(414, 264);
             this.btnDemandSave.Name = "btnDemandSave";
             this.btnDemandSave.Size = new System.Drawing.Size(27, 27);
             this.btnDemandSave.TabIndex = 8;
             this.btnDemandSave.UseVisualStyleBackColor = true;
             this.btnDemandSave.Click += new System.EventHandler(this.btnDemandSave_Click);
+            // 
+            // labelWat
+            // 
+            this.labelWat.AutoSize = true;
+            this.labelWat.Location = new System.Drawing.Point(394, 231);
+            this.labelWat.Name = "labelWat";
+            this.labelWat.Size = new System.Drawing.Size(47, 12);
+            this.labelWat.TabIndex = 13;
+            this.labelWat.Text = "label12";
+            // 
+            // labelGar
+            // 
+            this.labelGar.AutoSize = true;
+            this.labelGar.Location = new System.Drawing.Point(394, 128);
+            this.labelGar.Name = "labelGar";
+            this.labelGar.Size = new System.Drawing.Size(47, 12);
+            this.labelGar.TabIndex = 12;
+            this.labelGar.Text = "label11";
+            // 
+            // labelFor
+            // 
+            this.labelFor.AutoSize = true;
+            this.labelFor.Location = new System.Drawing.Point(394, 76);
+            this.labelFor.Name = "labelFor";
+            this.labelFor.Size = new System.Drawing.Size(41, 12);
+            this.labelFor.TabIndex = 11;
+            this.labelFor.Text = "label9";
+            // 
+            // labelCul
+            // 
+            this.labelCul.AutoSize = true;
+            this.labelCul.Location = new System.Drawing.Point(394, 180);
+            this.labelCul.Name = "labelCul";
+            this.labelCul.Size = new System.Drawing.Size(41, 12);
+            this.labelCul.TabIndex = 10;
+            this.labelCul.Text = "label8";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(16, 23);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(53, 12);
+            this.label7.TabIndex = 9;
+            this.label7.Text = "建设用地";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(16, 231);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(29, 12);
+            this.label6.TabIndex = 8;
+            this.label6.Text = "水域";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(16, 127);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(29, 12);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "草地";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(16, 75);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(29, 12);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "林地";
+            // 
+            // trackBarBuild
+            // 
+            this.trackBarBuild.Location = new System.Drawing.Point(75, 18);
+            this.trackBarBuild.Name = "trackBarBuild";
+            this.trackBarBuild.Size = new System.Drawing.Size(319, 45);
+            this.trackBarBuild.TabIndex = 5;
+            this.trackBarBuild.Scroll += new System.EventHandler(this.trackBarBuild_Scroll);
+            // 
+            // trackBarWater
+            // 
+            this.trackBarWater.Location = new System.Drawing.Point(75, 224);
+            this.trackBarWater.Name = "trackBarWater";
+            this.trackBarWater.Size = new System.Drawing.Size(319, 45);
+            this.trackBarWater.TabIndex = 4;
+            this.trackBarWater.Scroll += new System.EventHandler(this.trackBarWater_Scroll);
+            // 
+            // trackBarGrass
+            // 
+            this.trackBarGrass.Location = new System.Drawing.Point(75, 122);
+            this.trackBarGrass.Name = "trackBarGrass";
+            this.trackBarGrass.Size = new System.Drawing.Size(319, 45);
+            this.trackBarGrass.TabIndex = 3;
+            this.trackBarGrass.Scroll += new System.EventHandler(this.trackBarGrass_Scroll);
+            // 
+            // trackBarFore
+            // 
+            this.trackBarFore.Location = new System.Drawing.Point(75, 70);
+            this.trackBarFore.Name = "trackBarFore";
+            this.trackBarFore.Size = new System.Drawing.Size(319, 45);
+            this.trackBarFore.TabIndex = 2;
+            this.trackBarFore.Scroll += new System.EventHandler(this.trackBarFore_Scroll);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(16, 180);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(29, 12);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "耕地";
+            // 
+            // trackBarCult
+            // 
+            this.trackBarCult.Location = new System.Drawing.Point(75, 173);
+            this.trackBarCult.Name = "trackBarCult";
+            this.trackBarCult.Size = new System.Drawing.Size(319, 45);
+            this.trackBarCult.TabIndex = 0;
+            this.trackBarCult.Scroll += new System.EventHandler(this.trackBarCult_Scroll);
             // 
             // label10
             // 
@@ -234,14 +410,15 @@
             this.txtDemand.Name = "txtDemand";
             this.txtDemand.Size = new System.Drawing.Size(358, 95);
             this.txtDemand.TabIndex = 6;
-            this.txtDemand.Text = "118 394 711 208 306\n115 390 684 208 340";
+            this.txtDemand.Text = "118 394 711 208 306";
+            this.txtDemand.Visible = false;
             // 
             // cbx_risk
             // 
             this.cbx_risk.FormattingEnabled = true;
             this.cbx_risk.Location = new System.Drawing.Point(6, 17);
             this.cbx_risk.Name = "cbx_risk";
-            this.cbx_risk.Size = new System.Drawing.Size(126, 20);
+            this.cbx_risk.Size = new System.Drawing.Size(144, 20);
             this.cbx_risk.TabIndex = 19;
             this.cbx_risk.Text = "高风险";
             // 
@@ -250,13 +427,13 @@
             this.cbx_scene.FormattingEnabled = true;
             this.cbx_scene.Location = new System.Drawing.Point(168, 17);
             this.cbx_scene.Name = "cbx_scene";
-            this.cbx_scene.Size = new System.Drawing.Size(121, 20);
+            this.cbx_scene.Size = new System.Drawing.Size(144, 20);
             this.cbx_scene.TabIndex = 20;
             this.cbx_scene.Text = "基准情景";
             // 
             // btn_copydata
             // 
-            this.btn_copydata.Location = new System.Drawing.Point(14, 90);
+            this.btn_copydata.Location = new System.Drawing.Point(14, 126);
             this.btn_copydata.Name = "btn_copydata";
             this.btn_copydata.Size = new System.Drawing.Size(100, 28);
             this.btn_copydata.TabIndex = 21;
@@ -268,16 +445,16 @@
             // 
             this.groupBox8.Controls.Add(this.cbx_scene);
             this.groupBox8.Controls.Add(this.cbx_risk);
-            this.groupBox8.Location = new System.Drawing.Point(8, 20);
+            this.groupBox8.Location = new System.Drawing.Point(14, 34);
             this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(298, 46);
+            this.groupBox8.Size = new System.Drawing.Size(328, 68);
             this.groupBox8.TabIndex = 20;
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "情景选择";
             // 
             // btn_outTransfer
             // 
-            this.btn_outTransfer.Location = new System.Drawing.Point(226, 90);
+            this.btn_outTransfer.Location = new System.Drawing.Point(226, 126);
             this.btn_outTransfer.Name = "btn_outTransfer";
             this.btn_outTransfer.Size = new System.Drawing.Size(100, 28);
             this.btn_outTransfer.TabIndex = 22;
@@ -291,9 +468,9 @@
             this.groupBox2.Controls.Add(this.btn_outTransfer);
             this.groupBox2.Controls.Add(this.btn_copydata);
             this.groupBox2.Controls.Add(this.btnSimulation);
-            this.groupBox2.Location = new System.Drawing.Point(309, 147);
+            this.groupBox2.Location = new System.Drawing.Point(871, 16);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(408, 131);
+            this.groupBox2.Size = new System.Drawing.Size(344, 203);
             this.groupBox2.TabIndex = 23;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "4.情景选择";
@@ -303,7 +480,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightGray;
-            this.ClientSize = new System.Drawing.Size(721, 394);
+            this.ClientSize = new System.Drawing.Size(1255, 360);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox7);
             this.Controls.Add(this.groupBox6);
@@ -320,6 +497,13 @@
             this.groupBox6.ResumeLayout(false);
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarBuild)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarWater)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarGrass)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarFore)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarCult)).EndInit();
             this.groupBox8.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -351,5 +535,21 @@
         private System.Windows.Forms.GroupBox groupBox8;
         private System.Windows.Forms.Button btn_outTransfer;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Label labelBui;
+        private System.Windows.Forms.Label labelWat;
+        private System.Windows.Forms.Label labelGar;
+        private System.Windows.Forms.Label labelFor;
+        private System.Windows.Forms.Label labelCul;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TrackBar trackBarBuild;
+        private System.Windows.Forms.TrackBar trackBarWater;
+        private System.Windows.Forms.TrackBar trackBarGrass;
+        private System.Windows.Forms.TrackBar trackBarFore;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TrackBar trackBarCult;
     }
 }

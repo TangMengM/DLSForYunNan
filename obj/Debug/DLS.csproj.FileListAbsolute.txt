@@ -96,3 +96,12 @@ D:\Work\BOSSLI\云南\DLSForYunNan-master\obj\Debug\DLS.csproj.GenerateResource.
 D:\Work\BOSSLI\云南\DLSForYunNan-master\obj\Debug\DLS.dll
 D:\Work\BOSSLI\云南\DLSForYunNan-master\obj\Debug\DLS.pdb
 D:\Work\BOSSLI\云南\DLSForYunNan-master\obj\Debug\DLS.csprojResolveAssemblyReference.cache
+D:\Work\BOSSLI\云南\云南打分程序\DLSForYunNan\bin\Debug\DLS.dll
+D:\Work\BOSSLI\云南\云南打分程序\DLSForYunNan\bin\Debug\DLS.pdb
+D:\Work\BOSSLI\云南\云南打分程序\DLSForYunNan\obj\Debug\DLS.DataViewTest.resources
+D:\Work\BOSSLI\云南\云南打分程序\DLSForYunNan\obj\Debug\DLS.frmDLS.resources
+D:\Work\BOSSLI\云南\云南打分程序\DLSForYunNan\obj\Debug\DLS.frmDLSSimulation.resources
+D:\Work\BOSSLI\云南\云南打分程序\DLSForYunNan\obj\Debug\DLS.Properties.Resources.resources
+D:\Work\BOSSLI\云南\云南打分程序\DLSForYunNan\obj\Debug\DLS.csproj.GenerateResource.Cache
+D:\Work\BOSSLI\云南\云南打分程序\DLSForYunNan\obj\Debug\DLS.dll
+D:\Work\BOSSLI\云南\云南打分程序\DLSForYunNan\obj\Debug\DLS.pdb
