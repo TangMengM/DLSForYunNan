@@ -99,6 +99,43 @@ namespace DLS
                 }
             }
 
+            #region 加载土地利用现状
+            string sLandUse = "";
+
+            StreamReader sr = new StreamReader("LandUse.txt", System.Text.Encoding.Default);
+            try
+            {
+                //使用StreamReader类来读取文件
+                sr.BaseStream.Seek(0, SeekOrigin.Begin);
+                // 从数据流中读取每一行，直到文件的最后一行
+                string strLine = sr.ReadLine();
+                while (strLine != null)
+                {
+                    sLandUse = sLandUse + strLine;
+                    strLine = sr.ReadLine();
+                }
+                //关闭此StreamReader对象
+                sr.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                sr.Close();
+            }
+            string[] parts = sLandUse.Split(new char[] { ',' });
+            lab_nowCuilt.Text = parts[0] + " 平方千米";
+            lab_nowForest.Text = parts[1] + " 平方千米";
+            lab_nowGrass.Text = parts[2] + " 平方千米";
+            lab_nowWater.Text = parts[3] + " 平方千米";
+            lab_nowBuild.Text = parts[4] + " 平方千米";
+            #endregion
+
+            string sDemandCuilt = parts[5];
+            string sDemandForest = parts[6];
+            string sDemandGrass = parts[7];
+            string sDemandWater = parts[8];
+            string sDemandBuild = parts[9];
+
             //设置滑块属性
             //耕地滑块
             trackBarCult.Minimum = 0;
@@ -106,21 +143,21 @@ namespace DLS
             trackBarCult.TickFrequency = 25;
             trackBarCult.SmallChange = 5;
             trackBarCult.LargeChange = 25;
-            trackBarCult.Value = 118;
+            trackBarCult.Value = Convert.ToInt32(sDemandCuilt);
             //林地滑块
             trackBarFore.Minimum = 0;
             trackBarFore.Maximum = 600;
             trackBarFore.TickFrequency = 25;
             trackBarFore.SmallChange = 5;
             trackBarFore.LargeChange = 25;
-            trackBarFore.Value = 394;
+            trackBarFore.Value = Convert.ToInt32(sDemandForest);
             //草地滑块
             trackBarGrass.Minimum = 0;
             trackBarGrass.Maximum = 900;
             trackBarGrass.TickFrequency = 25;
             trackBarGrass.SmallChange = 5;
             trackBarGrass.LargeChange = 25;
-            trackBarGrass.Value = 711;
+            trackBarGrass.Value = Convert.ToInt32(sDemandGrass);
             //水域滑块
             trackBarWater.Minimum = 0;
             trackBarWater.Maximum = 300;
@@ -128,20 +165,99 @@ namespace DLS
             trackBarWater.SmallChange = 5;
             trackBarWater.LargeChange = 25;
             //水域值固定为208
-            trackBarWater.Value = 208;
+            trackBarWater.Value = Convert.ToInt32(sDemandWater);
             //建设用地滑块
             trackBarBuild.Minimum = 0;
             trackBarBuild.Maximum = 500;
             trackBarBuild.TickFrequency = 25;
             trackBarBuild.SmallChange = 5;
             trackBarBuild.LargeChange = 25;
-            trackBarBuild.Value = 306;
+            trackBarBuild.Value = Convert.ToInt32(sDemandBuild);
 
             labelCul.Text = trackBarCult.Value.ToString()+" 平方千米";
             labelFor.Text = trackBarFore.Value.ToString() + " 平方千米";
             labelGar.Text = trackBarGrass.Value.ToString() + " 平方千米";
             labelWat.Text = trackBarWater.Value.ToString() + " 平方千米";
             labelBui.Text = trackBarBuild.Value.ToString() + " 平方千米";
+
+
+            //建筑用地转换概率
+            nud_build.Minimum = 0;            //允许最小值
+            nud_build.Maximum = 1;            //允许最大值
+            nud_build.DecimalPlaces = 1;      //小数点后面位数
+            nud_build.Increment = 0.1M;         //间隔
+            nud_build.InterceptArrowKeys = true;
+            nud_build.Value = 0M;             //初始值
+
+            //林地用地转换概率
+            nud_forest.Minimum = 0;            //允许最小值
+            nud_forest.Maximum = 1;            //允许最大值
+            nud_forest.DecimalPlaces = 1;      //小数点后面位数
+            nud_forest.Increment = 0.1M;         //间隔
+            nud_forest.InterceptArrowKeys = true;
+            nud_forest.Value = 0.7M;             //初始值
+
+            //草地用地转换概率
+            nud_grass.Minimum = 0;            //允许最小值
+            nud_grass.Maximum = 1;            //允许最大值
+            nud_grass.DecimalPlaces = 1;      //小数点后面位数
+            nud_grass.Increment = 0.1M;         //间隔
+            nud_grass.InterceptArrowKeys = true;
+            nud_grass.Value = 0.8M;             //初始值
+
+            //耕地用地转换概率
+            nud_cuilt.Minimum = 0;            //允许最小值
+            nud_cuilt.Maximum = 1;            //允许最大值
+            nud_cuilt.DecimalPlaces = 1;      //小数点后面位数
+            nud_cuilt.Increment = 0.1M;         //间隔
+            nud_cuilt.InterceptArrowKeys = true;
+            nud_cuilt.Value = 0.8M;             //初始值
+
+            //水域用地转换概率
+            nud_water.Minimum = 0;            //允许最小值
+            nud_water.Maximum = 1;            //允许最大值
+            nud_water.DecimalPlaces = 1;      //小数点后面位数
+            nud_water.Increment = 0.1M;         //间隔
+            nud_water.InterceptArrowKeys = true;
+            nud_water.Value = 0.1M;             //初始值
+
+            //建筑用地转换概率
+            nud_build.Minimum = 0;            //允许最小值
+            nud_build.Maximum = 1;            //允许最大值
+            nud_build.DecimalPlaces = 1;      //小数点后面位数
+            nud_build.Increment = 0.1M;         //间隔
+            nud_build.InterceptArrowKeys = true;
+            nud_build.Value = 0M;             //初始值
+
+            //未利用地转换概率
+            nud_unUseLand.Minimum = 0;            //允许最小值
+            nud_unUseLand.Maximum = 1;            //允许最大值
+            nud_unUseLand.DecimalPlaces = 1;      //小数点后面位数
+            nud_unUseLand.Increment = 0.1M;         //间隔
+            nud_unUseLand.InterceptArrowKeys = true;
+            nud_unUseLand.Value = 0M;             //初始值
+
+
+            nud_numberOfLanduse.Minimum = 0;            //允许最小值
+            nud_numberOfLanduse.Maximum = 15;            //允许最大值
+            nud_numberOfLanduse.DecimalPlaces = 0;      //小数点后面位数
+            nud_numberOfLanduse.Increment = 1;         //间隔
+            nud_numberOfLanduse.InterceptArrowKeys = true;
+            nud_numberOfLanduse.Value = 5;             //初始值
+
+            nud_convergence.Minimum = 0;            //允许最小值
+            nud_convergence.Maximum = 10;            //允许最大值
+            nud_convergence.DecimalPlaces = 0;      //小数点后面位数
+            nud_convergence.Increment = 1;         //间隔
+            nud_convergence.InterceptArrowKeys = true;
+            nud_convergence.Value = 3;             //初始值
+
+            nud_targetYear.Minimum = 2000;            //允许最小值
+            nud_targetYear.Maximum = 2100;            //允许最大值
+            nud_targetYear.DecimalPlaces = 0;      //小数点后面位数
+            nud_targetYear.Increment = 1;         //间隔
+            nud_targetYear.InterceptArrowKeys = true;
+            nud_targetYear.Value = 2020;             //初始值
 
 
         }
@@ -473,48 +589,38 @@ namespace DLS
 
         private void btnParameterOpen_Click(object sender, EventArgs e)
         {
-            OpenFileDialog ofdParameter = new OpenFileDialog();
-            ofdParameter.InitialDirectory = strProjectPath;
-            ofdParameter.Filter = "(*.1)|*.1|" +"(*.txt)|*.txt|" + "(*.*)|*.*";
-            ofdParameter.FilterIndex = 0;
-            if (ofdParameter.ShowDialog() == DialogResult.OK)
-            {
-                StreamReader sr = new StreamReader(ofdParameter.FileName, System.Text.Encoding.Default);
-                try
-                {
-                    //使用StreamReader类来读取文件
-                    sr.BaseStream.Seek(0, SeekOrigin.Begin);
-                    // 从数据流中读取每一行，直到文件的最后一行，并在richTextBox1中显示出内容
-                    this.txtParameter.Text = "";
-                    string strLine = sr.ReadLine();
-                    while (strLine != null)
-                    {
-                        this.txtParameter.AppendText(strLine);
-                        strLine = sr.ReadLine();
-                    }
-                    //关闭此StreamReader对象
-                    sr.Close();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                    sr.Close();
-                }
-            }         
+               
         }
 
         private void btnParameterSave_Click(object sender, EventArgs e)
         {
+            string sNumOfLandUse = nud_numberOfLanduse.Value.ToString();
+            string sCuilt = nud_cuilt.Value.ToString();
+            string sForest = nud_forest.Value.ToString();
+            string sGrass = nud_grass.Value.ToString();
+            string sWater = nud_water.Value.ToString();
+            string sBuild = nud_build.Value.ToString();
+            string sConvergence = nud_convergence.Value.ToString();
+            string sTargetYear = nud_targetYear.Value.ToString();
+            string sParameter = sNumOfLandUse + Environment.NewLine + "0 1 2 3 4" + Environment.NewLine + sCuilt + " " + sForest + " " + sGrass + " " + sWater + " " + sBuild + Environment.NewLine + sConvergence + Environment.NewLine + "2019" + " " + sTargetYear + Environment.NewLine + "0" + Environment.NewLine + "1";
+
             try
             {
                 SaveFileDialog sfdParameterSave = new SaveFileDialog();
-                sfdParameterSave.InitialDirectory = strProjectPath;
                 sfdParameterSave.Filter = "(*.1)|*.1|" + "(*.txt)|*.txt|" + "(*.*)|*.*";
                 sfdParameterSave.FileName = "main";
 
                 if (sfdParameterSave.ShowDialog() == DialogResult.OK)
                 {
-                    this.txtParameter.SaveFile(sfdParameterSave.FileName, RichTextBoxStreamType.PlainText);//重点在此句
+                    System.IO.FileStream fs = new System.IO.FileStream(sfdParameterSave.FileName, FileMode.Create);
+                    StreamWriter sw = new StreamWriter(fs);
+                    //开始写入
+                    sw.Write(sParameter);
+                    //清空缓冲区
+                    sw.Flush();
+                    //关闭流
+                    sw.Close();
+                    fs.Close();
                 }
             }
             catch (Exception ex)
@@ -530,26 +636,8 @@ namespace DLS
             toolTip1.InitialDelay = 100;
             toolTip1.ReshowDelay = 500;
             toolTip1.ShowAlways = true;
-            String txtHelp = "栅格数据 Value=1，为限制区，其他值则为非限制区！";
-            toolTip1.SetToolTip(this.txtParameter, txtHelp);//参数1是button名,参数2是要显示的内容
         }
 
-        private void txtParameter_MouseHover(object sender, EventArgs e)
-        {
-            ToolTip toolTip1 = new ToolTip();
-            //toolTip1.AutoPopDelay = 1000;//一下4个都是属性
-            toolTip1.InitialDelay = 100;
-            toolTip1.ReshowDelay = 500;
-            toolTip1.ShowAlways = true;
-            String txtHelp = "第1行：用地类型数\n";
-            txtHelp = txtHelp + "第2行：用地类型编码，从0开始\n";
-            txtHelp = txtHelp + "第3行：与用地类型对应的转换规则\n";
-            txtHelp = txtHelp + "第4行：收敛条件：土地需求变化和实际分配土地之间收敛时的允许误差\n";
-            txtHelp = txtHelp + "第5行：模拟的起始和结束年份\n";
-            txtHelp = txtHelp + "第6行：用地类型分布驱动因子随时间变化而变化的数量\n";
-            txtHelp = txtHelp + "第7行：头文件记录格式标记：1表示ArcView的标题文件将在输出文件中输出，0表示不输出。";
-            toolTip1.SetToolTip(this.txtParameter, txtHelp);//参数1是button名,参数2是要显示的内容
-        }
         /// <summary>
         /// 存在ascii格式的文件
         /// </summary>
@@ -1292,6 +1380,50 @@ namespace DLS
             labelGar.Text = trackBarGrass.Value.ToString() + " 平方千米";
             labelWat.Text = trackBarWater.Value.ToString() + " 平方千米";
             labelBui.Text = trackBarBuild.Value.ToString() + " 平方千米";
+        }
+
+        private void btn_reductionLandUseDemand_Click(object sender, EventArgs e)
+        {
+            string sLandUse = "";
+
+            StreamReader sr = new StreamReader("LandUse.txt", System.Text.Encoding.Default);
+            try
+            {
+                //使用StreamReader类来读取文件
+                sr.BaseStream.Seek(0, SeekOrigin.Begin);
+                // 从数据流中读取每一行，直到文件的最后一行
+                string strLine = sr.ReadLine();
+                while (strLine != null)
+                {
+                    sLandUse = sLandUse + strLine;
+                    strLine = sr.ReadLine();
+                }
+                //关闭此StreamReader对象
+                sr.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                sr.Close();
+            }
+            string[] parts = sLandUse.Split(new char[] { ',' });
+            lab_nowCuilt.Text = parts[0];
+            lab_nowForest.Text = parts[1];
+            lab_nowGrass.Text = parts[2];
+            lab_nowWater.Text = parts[3];
+            lab_nowBuild.Text = parts[4];
+
+            string sDemandCuilt = parts[5];
+            string sDemandForest = parts[6];
+            string sDemandGrass = parts[7];
+            string sDemandWater = parts[8];
+            string sDemandBuild = parts[9];
+
+            trackBarCult.Value = Convert.ToInt32(sDemandCuilt);
+            trackBarFore.Value = Convert.ToInt32(sDemandForest);
+            trackBarGrass.Value = Convert.ToInt32(sDemandGrass);
+            trackBarWater.Value = Convert.ToInt32(sDemandWater);
+            trackBarBuild.Value = Convert.ToInt32(sDemandBuild);
         }
 
 

@@ -30,10 +30,27 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDLSSimulation));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.nud_targetYear = new System.Windows.Forms.NumericUpDown();
+            this.nud_convergence = new System.Windows.Forms.NumericUpDown();
+            this.nud_numberOfLanduse = new System.Windows.Forms.NumericUpDown();
+            this.nud_unUseLand = new System.Windows.Forms.NumericUpDown();
+            this.nud_water = new System.Windows.Forms.NumericUpDown();
+            this.nud_cuilt = new System.Windows.Forms.NumericUpDown();
+            this.nud_grass = new System.Windows.Forms.NumericUpDown();
+            this.nud_forest = new System.Windows.Forms.NumericUpDown();
+            this.nud_build = new System.Windows.Forms.NumericUpDown();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
             this.btnParameterOpen = new System.Windows.Forms.Button();
             this.btnParameterSave = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
-            this.txtParameter = new System.Windows.Forms.RichTextBox();
             this.btnSimulation = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.btnProjectPath = new System.Windows.Forms.Button();
@@ -42,7 +59,14 @@
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.rtxtState = new System.Windows.Forms.RichTextBox();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.lab_nowWater = new System.Windows.Forms.Label();
+            this.lab_nowCuilt = new System.Windows.Forms.Label();
+            this.lab_nowGrass = new System.Windows.Forms.Label();
+            this.lab_nowForest = new System.Windows.Forms.Label();
+            this.lab_nowBuild = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.btn_reductionLandUseDemand = new System.Windows.Forms.Button();
             this.labelBui = new System.Windows.Forms.Label();
             this.btnDemandOpen = new System.Windows.Forms.Button();
             this.btnDemandSave = new System.Windows.Forms.Button();
@@ -69,9 +93,19 @@
             this.btn_outTransfer = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nud_targetYear)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nud_convergence)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nud_numberOfLanduse)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nud_unUseLand)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nud_water)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nud_cuilt)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nud_grass)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nud_forest)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nud_build)).BeginInit();
             this.groupBox5.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.groupBox7.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarBuild)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarWater)).BeginInit();
@@ -84,16 +118,177 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.nud_targetYear);
+            this.groupBox1.Controls.Add(this.nud_convergence);
+            this.groupBox1.Controls.Add(this.nud_numberOfLanduse);
+            this.groupBox1.Controls.Add(this.nud_unUseLand);
+            this.groupBox1.Controls.Add(this.nud_water);
+            this.groupBox1.Controls.Add(this.nud_cuilt);
+            this.groupBox1.Controls.Add(this.nud_grass);
+            this.groupBox1.Controls.Add(this.nud_forest);
+            this.groupBox1.Controls.Add(this.nud_build);
+            this.groupBox1.Controls.Add(this.label9);
+            this.groupBox1.Controls.Add(this.label8);
+            this.groupBox1.Controls.Add(this.label11);
+            this.groupBox1.Controls.Add(this.label12);
+            this.groupBox1.Controls.Add(this.label13);
+            this.groupBox1.Controls.Add(this.label14);
+            this.groupBox1.Controls.Add(this.label15);
+            this.groupBox1.Controls.Add(this.label16);
+            this.groupBox1.Controls.Add(this.label17);
             this.groupBox1.Controls.Add(this.btnParameterOpen);
             this.groupBox1.Controls.Add(this.btnParameterSave);
             this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.txtParameter);
             this.groupBox1.Location = new System.Drawing.Point(12, 73);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(286, 284);
+            this.groupBox1.Size = new System.Drawing.Size(313, 284);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "2.参数设置";
+            // 
+            // nud_targetYear
+            // 
+            this.nud_targetYear.Location = new System.Drawing.Point(222, 151);
+            this.nud_targetYear.Name = "nud_targetYear";
+            this.nud_targetYear.Size = new System.Drawing.Size(59, 21);
+            this.nud_targetYear.TabIndex = 45;
+            // 
+            // nud_convergence
+            // 
+            this.nud_convergence.Location = new System.Drawing.Point(222, 105);
+            this.nud_convergence.Name = "nud_convergence";
+            this.nud_convergence.Size = new System.Drawing.Size(59, 21);
+            this.nud_convergence.TabIndex = 44;
+            // 
+            // nud_numberOfLanduse
+            // 
+            this.nud_numberOfLanduse.Location = new System.Drawing.Point(222, 60);
+            this.nud_numberOfLanduse.Name = "nud_numberOfLanduse";
+            this.nud_numberOfLanduse.Size = new System.Drawing.Size(59, 21);
+            this.nud_numberOfLanduse.TabIndex = 43;
+            // 
+            // nud_unUseLand
+            // 
+            this.nud_unUseLand.Location = new System.Drawing.Point(65, 236);
+            this.nud_unUseLand.Name = "nud_unUseLand";
+            this.nud_unUseLand.Size = new System.Drawing.Size(59, 21);
+            this.nud_unUseLand.TabIndex = 42;
+            // 
+            // nud_water
+            // 
+            this.nud_water.Location = new System.Drawing.Point(65, 194);
+            this.nud_water.Name = "nud_water";
+            this.nud_water.Size = new System.Drawing.Size(59, 21);
+            this.nud_water.TabIndex = 41;
+            // 
+            // nud_cuilt
+            // 
+            this.nud_cuilt.Location = new System.Drawing.Point(65, 149);
+            this.nud_cuilt.Name = "nud_cuilt";
+            this.nud_cuilt.Size = new System.Drawing.Size(59, 21);
+            this.nud_cuilt.TabIndex = 40;
+            // 
+            // nud_grass
+            // 
+            this.nud_grass.Location = new System.Drawing.Point(65, 106);
+            this.nud_grass.Name = "nud_grass";
+            this.nud_grass.Size = new System.Drawing.Size(59, 21);
+            this.nud_grass.TabIndex = 39;
+            // 
+            // nud_forest
+            // 
+            this.nud_forest.Location = new System.Drawing.Point(65, 64);
+            this.nud_forest.Name = "nud_forest";
+            this.nud_forest.Size = new System.Drawing.Size(59, 21);
+            this.nud_forest.TabIndex = 38;
+            // 
+            // nud_build
+            // 
+            this.nud_build.Location = new System.Drawing.Point(65, 24);
+            this.nud_build.Name = "nud_build";
+            this.nud_build.Size = new System.Drawing.Size(59, 21);
+            this.nud_build.TabIndex = 37;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(151, 153);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(41, 12);
+            this.label9.TabIndex = 36;
+            this.label9.Text = "目标年";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(151, 107);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(53, 12);
+            this.label8.TabIndex = 35;
+            this.label8.Text = "收敛误差";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(151, 62);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(65, 12);
+            this.label11.TabIndex = 34;
+            this.label11.Text = "用地类型数";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(6, 238);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(53, 12);
+            this.label12.TabIndex = 33;
+            this.label12.Text = "未利用地";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(6, 196);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(29, 12);
+            this.label13.TabIndex = 32;
+            this.label13.Text = "水域";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(6, 151);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(29, 12);
+            this.label14.TabIndex = 31;
+            this.label14.Text = "耕地";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(6, 108);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(29, 12);
+            this.label15.TabIndex = 30;
+            this.label15.Text = "草地";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(6, 66);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(29, 12);
+            this.label16.TabIndex = 29;
+            this.label16.Text = "林地";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(6, 26);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(53, 12);
+            this.label17.TabIndex = 28;
+            this.label17.Text = "建设用地";
             // 
             // btnParameterOpen
             // 
@@ -124,20 +319,9 @@
             this.label4.TabIndex = 7;
             this.label4.Text = "参数设置";
             // 
-            // txtParameter
-            // 
-            this.txtParameter.BackColor = System.Drawing.SystemColors.Window;
-            this.txtParameter.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtParameter.Location = new System.Drawing.Point(6, 20);
-            this.txtParameter.Name = "txtParameter";
-            this.txtParameter.Size = new System.Drawing.Size(262, 225);
-            this.txtParameter.TabIndex = 6;
-            this.txtParameter.Text = "5\n0 1 2 3 4 \n0.8 0.7 0.8 0.1 0\n3\n2019 2020\n0\n1";
-            this.txtParameter.MouseHover += new System.EventHandler(this.txtParameter_MouseHover);
-            // 
             // btnSimulation
             // 
-            this.btnSimulation.Location = new System.Drawing.Point(120, 126);
+            this.btnSimulation.Location = new System.Drawing.Point(142, 94);
             this.btnSimulation.Name = "btnSimulation";
             this.btnSimulation.Size = new System.Drawing.Size(100, 28);
             this.btnSimulation.TabIndex = 16;
@@ -152,7 +336,7 @@
             this.groupBox5.Controls.Add(this.label5);
             this.groupBox5.Location = new System.Drawing.Point(12, 6);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(286, 61);
+            this.groupBox5.Size = new System.Drawing.Size(313, 61);
             this.groupBox5.TabIndex = 3;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "1.工程位置";
@@ -187,9 +371,9 @@
             // groupBox6
             // 
             this.groupBox6.Controls.Add(this.rtxtState);
-            this.groupBox6.Location = new System.Drawing.Point(871, 228);
+            this.groupBox6.Location = new System.Drawing.Point(414, 363);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(342, 123);
+            this.groupBox6.Size = new System.Drawing.Size(576, 146);
             this.groupBox6.TabIndex = 17;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "5.状态窗口";
@@ -202,24 +386,85 @@
             this.rtxtState.Location = new System.Drawing.Point(3, 17);
             this.rtxtState.Name = "rtxtState";
             this.rtxtState.ReadOnly = true;
-            this.rtxtState.Size = new System.Drawing.Size(336, 103);
+            this.rtxtState.Size = new System.Drawing.Size(570, 126);
             this.rtxtState.TabIndex = 18;
             this.rtxtState.Text = "";
             // 
             // groupBox7
             // 
+            this.groupBox7.Controls.Add(this.groupBox4);
             this.groupBox7.Controls.Add(this.groupBox3);
             this.groupBox7.Controls.Add(this.label10);
             this.groupBox7.Controls.Add(this.txtDemand);
-            this.groupBox7.Location = new System.Drawing.Point(307, 12);
+            this.groupBox7.Location = new System.Drawing.Point(331, 12);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(558, 339);
+            this.groupBox7.Size = new System.Drawing.Size(665, 345);
             this.groupBox7.TabIndex = 18;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "3.用地需求";
             // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.lab_nowWater);
+            this.groupBox4.Controls.Add(this.lab_nowCuilt);
+            this.groupBox4.Controls.Add(this.lab_nowGrass);
+            this.groupBox4.Controls.Add(this.lab_nowForest);
+            this.groupBox4.Controls.Add(this.lab_nowBuild);
+            this.groupBox4.Location = new System.Drawing.Point(533, 20);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(126, 319);
+            this.groupBox4.TabIndex = 25;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "土地利用现状";
+            // 
+            // lab_nowWater
+            // 
+            this.lab_nowWater.AutoSize = true;
+            this.lab_nowWater.Location = new System.Drawing.Point(16, 231);
+            this.lab_nowWater.Name = "lab_nowWater";
+            this.lab_nowWater.Size = new System.Drawing.Size(47, 12);
+            this.lab_nowWater.TabIndex = 4;
+            this.lab_nowWater.Text = "label22";
+            // 
+            // lab_nowCuilt
+            // 
+            this.lab_nowCuilt.AutoSize = true;
+            this.lab_nowCuilt.Location = new System.Drawing.Point(16, 180);
+            this.lab_nowCuilt.Name = "lab_nowCuilt";
+            this.lab_nowCuilt.Size = new System.Drawing.Size(47, 12);
+            this.lab_nowCuilt.TabIndex = 3;
+            this.lab_nowCuilt.Text = "label21";
+            // 
+            // lab_nowGrass
+            // 
+            this.lab_nowGrass.AutoSize = true;
+            this.lab_nowGrass.Location = new System.Drawing.Point(16, 128);
+            this.lab_nowGrass.Name = "lab_nowGrass";
+            this.lab_nowGrass.Size = new System.Drawing.Size(47, 12);
+            this.lab_nowGrass.TabIndex = 2;
+            this.lab_nowGrass.Text = "label20";
+            // 
+            // lab_nowForest
+            // 
+            this.lab_nowForest.AutoSize = true;
+            this.lab_nowForest.Location = new System.Drawing.Point(16, 75);
+            this.lab_nowForest.Name = "lab_nowForest";
+            this.lab_nowForest.Size = new System.Drawing.Size(47, 12);
+            this.lab_nowForest.TabIndex = 1;
+            this.lab_nowForest.Text = "label19";
+            // 
+            // lab_nowBuild
+            // 
+            this.lab_nowBuild.AutoSize = true;
+            this.lab_nowBuild.Location = new System.Drawing.Point(16, 23);
+            this.lab_nowBuild.Name = "lab_nowBuild";
+            this.lab_nowBuild.Size = new System.Drawing.Size(47, 12);
+            this.lab_nowBuild.TabIndex = 0;
+            this.lab_nowBuild.Text = "label18";
+            // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.btn_reductionLandUseDemand);
             this.groupBox3.Controls.Add(this.labelBui);
             this.groupBox3.Controls.Add(this.btnDemandOpen);
             this.groupBox3.Controls.Add(this.btnDemandSave);
@@ -239,9 +484,19 @@
             this.groupBox3.Controls.Add(this.trackBarCult);
             this.groupBox3.Location = new System.Drawing.Point(8, 15);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(544, 305);
+            this.groupBox3.Size = new System.Drawing.Size(519, 324);
             this.groupBox3.TabIndex = 24;
             this.groupBox3.TabStop = false;
+            // 
+            // btn_reductionLandUseDemand
+            // 
+            this.btn_reductionLandUseDemand.Location = new System.Drawing.Point(258, 264);
+            this.btn_reductionLandUseDemand.Name = "btn_reductionLandUseDemand";
+            this.btn_reductionLandUseDemand.Size = new System.Drawing.Size(100, 28);
+            this.btn_reductionLandUseDemand.TabIndex = 23;
+            this.btn_reductionLandUseDemand.Text = "还原默认值";
+            this.btn_reductionLandUseDemand.UseVisualStyleBackColor = true;
+            this.btn_reductionLandUseDemand.Click += new System.EventHandler(this.btn_reductionLandUseDemand_Click);
             // 
             // labelBui
             // 
@@ -433,7 +688,7 @@
             // 
             // btn_copydata
             // 
-            this.btn_copydata.Location = new System.Drawing.Point(14, 126);
+            this.btn_copydata.Location = new System.Drawing.Point(18, 94);
             this.btn_copydata.Name = "btn_copydata";
             this.btn_copydata.Size = new System.Drawing.Size(100, 28);
             this.btn_copydata.TabIndex = 21;
@@ -445,16 +700,15 @@
             // 
             this.groupBox8.Controls.Add(this.cbx_scene);
             this.groupBox8.Controls.Add(this.cbx_risk);
-            this.groupBox8.Location = new System.Drawing.Point(14, 34);
+            this.groupBox8.Location = new System.Drawing.Point(12, 20);
             this.groupBox8.Name = "groupBox8";
             this.groupBox8.Size = new System.Drawing.Size(328, 68);
             this.groupBox8.TabIndex = 20;
             this.groupBox8.TabStop = false;
-            this.groupBox8.Text = "情景选择";
             // 
             // btn_outTransfer
             // 
-            this.btn_outTransfer.Location = new System.Drawing.Point(226, 126);
+            this.btn_outTransfer.Location = new System.Drawing.Point(266, 94);
             this.btn_outTransfer.Name = "btn_outTransfer";
             this.btn_outTransfer.Size = new System.Drawing.Size(100, 28);
             this.btn_outTransfer.TabIndex = 22;
@@ -468,9 +722,9 @@
             this.groupBox2.Controls.Add(this.btn_outTransfer);
             this.groupBox2.Controls.Add(this.btn_copydata);
             this.groupBox2.Controls.Add(this.btnSimulation);
-            this.groupBox2.Location = new System.Drawing.Point(871, 16);
+            this.groupBox2.Location = new System.Drawing.Point(20, 363);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(344, 203);
+            this.groupBox2.Size = new System.Drawing.Size(380, 146);
             this.groupBox2.TabIndex = 23;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "4.情景选择";
@@ -480,7 +734,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightGray;
-            this.ClientSize = new System.Drawing.Size(1255, 360);
+            this.ClientSize = new System.Drawing.Size(1006, 516);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox7);
             this.Controls.Add(this.groupBox6);
@@ -492,11 +746,22 @@
             this.Load += new System.EventHandler(this.frmDLSParemeters_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nud_targetYear)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nud_convergence)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nud_numberOfLanduse)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nud_unUseLand)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nud_water)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nud_cuilt)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nud_grass)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nud_forest)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nud_build)).EndInit();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
             this.groupBox6.ResumeLayout(false);
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarBuild)).EndInit();
@@ -514,7 +779,6 @@
 
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.RichTextBox txtParameter;
         private System.Windows.Forms.Button btnParameterSave;
         private System.Windows.Forms.Button btnSimulation;
         private System.Windows.Forms.GroupBox groupBox5;
@@ -551,5 +815,30 @@
         private System.Windows.Forms.TrackBar trackBarFore;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TrackBar trackBarCult;
+        private System.Windows.Forms.Button btn_reductionLandUseDemand;
+        private System.Windows.Forms.NumericUpDown nud_targetYear;
+        private System.Windows.Forms.NumericUpDown nud_convergence;
+        private System.Windows.Forms.NumericUpDown nud_numberOfLanduse;
+        private System.Windows.Forms.NumericUpDown nud_unUseLand;
+        private System.Windows.Forms.NumericUpDown nud_water;
+        private System.Windows.Forms.NumericUpDown nud_cuilt;
+        private System.Windows.Forms.NumericUpDown nud_grass;
+        private System.Windows.Forms.NumericUpDown nud_forest;
+        private System.Windows.Forms.NumericUpDown nud_build;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.Label lab_nowWater;
+        private System.Windows.Forms.Label lab_nowCuilt;
+        private System.Windows.Forms.Label lab_nowGrass;
+        private System.Windows.Forms.Label lab_nowForest;
+        private System.Windows.Forms.Label lab_nowBuild;
     }
 }
