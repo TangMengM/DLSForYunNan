@@ -123,11 +123,12 @@ namespace DLS
                 sr.Close();
             }
             string[] parts = sLandUse.Split(new char[] { ',' });
-            lab_nowCuilt.Text = parts[0] + " 平方千米";
-            lab_nowForest.Text = parts[1] + " 平方千米";
-            lab_nowGrass.Text = parts[2] + " 平方千米";
-            lab_nowWater.Text = parts[3] + " 平方千米";
-            lab_nowBuild.Text = parts[4] + " 平方千米";
+            lab_nowCuilt.Text = " " + parts[0] + Environment.NewLine +"平方千米";
+            lab_nowForest.Text = " " + parts[1] + Environment.NewLine + "平方千米";
+            lab_nowGrass.Text = " " + parts[2] + Environment.NewLine + "平方千米";
+            lab_nowWater.Text = " " + parts[3] + Environment.NewLine + "平方千米";
+            lab_nowBuild.Text = " " + parts[4] + Environment.NewLine + "平方千米";
+            label31.Text = " 0" + Environment.NewLine + " 平方千米";
             #endregion
 
             string sDemandCuilt = parts[5];
@@ -174,11 +175,19 @@ namespace DLS
             trackBarBuild.LargeChange = 25;
             trackBarBuild.Value = Convert.ToInt32(sDemandBuild);
 
+            trackBar1.Minimum = 0;
+            trackBar1.Maximum = 500;
+            trackBar1.TickFrequency = 25;
+            trackBar1.SmallChange = 5;
+            trackBar1.LargeChange = 25;
+            trackBar1.Value = 0;
+
             labelCul.Text = trackBarCult.Value.ToString()+" 平方千米";
             labelFor.Text = trackBarFore.Value.ToString() + " 平方千米";
             labelGar.Text = trackBarGrass.Value.ToString() + " 平方千米";
             labelWat.Text = trackBarWater.Value.ToString() + " 平方千米";
             labelBui.Text = trackBarBuild.Value.ToString() + " 平方千米";
+            lab_unUsedLand.Text = trackBar1.Value.ToString() + " 平方千米";
 
 
             //建筑用地转换概率
@@ -589,7 +598,52 @@ namespace DLS
 
         private void btnParameterOpen_Click(object sender, EventArgs e)
         {
-               
+            string sParameter = "";
+            OpenFileDialog ofdMain = new OpenFileDialog();
+            ofdMain.Filter = "(*.1)|*.1|" + "(*.txt)|*.txt|" + "(*.*)|*.*";
+            ofdMain.FilterIndex = 0;
+            
+            
+            if (ofdMain.ShowDialog() == DialogResult.OK)
+            {
+                StreamReader sr = new StreamReader(ofdMain.FileName, System.Text.Encoding.Default);
+                try
+                {
+                    //使用StreamReader类来读取文件
+                    sr.BaseStream.Seek(0, SeekOrigin.Begin);
+                    // 从数据流中读取每一行，直到文件的最后一行
+                    string strLine = sr.ReadLine();
+                    while (strLine != null)
+                    {
+                        if (!sr.EndOfStream)
+                        {
+                            sParameter = sParameter + " " + strLine;
+                            strLine = sr.ReadLine();
+                        }
+                        else
+                        {
+                            sParameter = sParameter + strLine;
+                            strLine = sr.ReadLine();
+                        }
+                    }
+                    //关闭此StreamReader对象
+                    sr.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    sr.Close();
+                }
+                string[] parts = sParameter.Split(new char[] { ' ' });
+                nud_numberOfLanduse.Value = Convert.ToDecimal(parts[1]);
+                nud_cuilt.Value = Convert.ToDecimal(parts[7]);
+                nud_forest.Value = Convert.ToDecimal(parts[8]);
+                nud_grass.Value = Convert.ToDecimal(parts[9]);
+                nud_water.Value = Convert.ToDecimal(parts[10]);
+                nud_build.Value = Convert.ToDecimal(parts[11]);
+                nud_convergence.Value = Convert.ToDecimal(parts[12]);
+                nud_targetYear.Value = Convert.ToDecimal(parts[14]);
+            }
         }
 
         private void btnParameterSave_Click(object sender, EventArgs e)
@@ -814,6 +868,7 @@ namespace DLS
         /// <param name="e"></param>
         private void btnDemandOpen_Click(object sender, EventArgs e)
         {
+            string sDemand = "";
             OpenFileDialog ofdDemand = new OpenFileDialog();
             ofdDemand.InitialDirectory = strProjectPath;
             ofdDemand.Filter = "(*.in1)|*.in1|" + "(*.txt)|*.txt|" + "(*.*)|*.*";
@@ -825,13 +880,20 @@ namespace DLS
                 {
                     //使用StreamReader类来读取文件
                     sr.BaseStream.Seek(0, SeekOrigin.Begin);
-                    // 从数据流中读取每一行，直到文件的最后一行，并在richTextBox1中显示出内容
-                    this.txtDemand.Text = "";
+                    // 从数据流中读取每一行，直到文件的最后一行
                     string strLine = sr.ReadLine();
                     while (strLine != null)
                     {
-                        this.txtDemand.AppendText(strLine);
-                        strLine = sr.ReadLine();
+                        if (!sr.EndOfStream)
+                        {
+                            sDemand = sDemand + " " + strLine;
+                            strLine = sr.ReadLine();
+                        }
+                        else
+                        {
+                            sDemand = sDemand + strLine;
+                            strLine = sr.ReadLine();
+                        }
                     }
                     //关闭此StreamReader对象
                     sr.Close();
@@ -841,7 +903,25 @@ namespace DLS
                     MessageBox.Show(ex.Message);
                     sr.Close();
                 }
-            }         
+            }
+
+            string[] parts = sDemand.Split(new char[] { ',' });
+            lab_nowCuilt.Text = " " + parts[0] + "平方千米";
+            lab_nowForest.Text = " " + parts[1] + "平方千米";
+            lab_nowGrass.Text = " " + parts[2] + "平方千米";
+            lab_nowWater.Text = " " + parts[3] + "平方千米";
+            lab_nowBuild.Text = " " + parts[4] + "平方千米";
+            trackBarCult.Value = Convert.ToInt32(parts[5]);
+            trackBarFore.Value = Convert.ToInt32(parts[6]);
+            trackBarGrass.Value = Convert.ToInt32(parts[7]);
+            trackBarWater.Value = Convert.ToInt32(parts[8]);
+            trackBarBuild.Value = Convert.ToInt32(parts[9]);
+            labelCul.Text = " " + parts[5] + "平方千米";
+            labelFor.Text = " " + parts[6] + "平方千米";
+            labelGar.Text = " " + parts[7] + "平方千米";
+            labelWat.Text = " " + parts[8] + "平方千米";
+            labelBui.Text = " " + parts[9] + "平方千米";
+
         }
         /// <summary>
         /// 保存情景数据
@@ -850,8 +930,9 @@ namespace DLS
         /// <param name="e"></param>
         private void btnDemandSave_Click(object sender, EventArgs e)
         {
+            string landUse = "";
             sLandUseDemand = trackBarCult.Value.ToString() + " " + trackBarFore.Value.ToString() + " " + trackBarGrass.Value.ToString() + " " + trackBarWater.Value.ToString() + " " + trackBarBuild.Value.ToString();
-            txtDemand.Text = txtDemand.Text + System.Environment.NewLine + sLandUseDemand;
+            landUse = labelCul.Text + " " + labelFor.Text + " " + labelGar.Text + " " + labelWat.Text + " " + labelBui.Text + System.Environment.NewLine + sLandUseDemand;
             try
             {
                 SaveFileDialog sfdDemand = new SaveFileDialog();
@@ -861,7 +942,15 @@ namespace DLS
 
                 if (sfdDemand.ShowDialog() == DialogResult.OK)
                 {
-                    this.txtDemand.SaveFile(sfdDemand.FileName, RichTextBoxStreamType.PlainText);//重点在此句
+                    System.IO.FileStream fs = new System.IO.FileStream(sfdDemand.FileName, FileMode.Create);
+                    StreamWriter sw = new StreamWriter(fs);
+                    //开始写入
+                    sw.Write(landUse);
+                    //清空缓冲区
+                    sw.Flush();
+                    //关闭流
+                    sw.Close();
+                    fs.Close();
                 }
             }
             catch (Exception ex)
@@ -1407,11 +1496,11 @@ namespace DLS
                 sr.Close();
             }
             string[] parts = sLandUse.Split(new char[] { ',' });
-            lab_nowCuilt.Text = parts[0];
-            lab_nowForest.Text = parts[1];
-            lab_nowGrass.Text = parts[2];
-            lab_nowWater.Text = parts[3];
-            lab_nowBuild.Text = parts[4];
+            lab_nowCuilt.Text = " " + parts[0] + Environment.NewLine + "平方千米";
+            lab_nowForest.Text = " " + parts[1] + Environment.NewLine + "平方千米";
+            lab_nowGrass.Text = " " + parts[2] + Environment.NewLine + "平方千米";
+            lab_nowWater.Text = " " + parts[3] + Environment.NewLine + "平方千米";
+            lab_nowBuild.Text = " " + parts[4] + Environment.NewLine + "平方千米";
 
             string sDemandCuilt = parts[5];
             string sDemandForest = parts[6];
@@ -1424,9 +1513,23 @@ namespace DLS
             trackBarGrass.Value = Convert.ToInt32(sDemandGrass);
             trackBarWater.Value = Convert.ToInt32(sDemandWater);
             trackBarBuild.Value = Convert.ToInt32(sDemandBuild);
+
+            labelCul.Text = trackBarCult.Value.ToString() + " 平方千米";
+            labelFor.Text = trackBarFore.Value.ToString() + " 平方千米";
+            labelGar.Text = trackBarGrass.Value.ToString() + " 平方千米";
+            labelWat.Text = trackBarWater.Value.ToString() + " 平方千米";
+            labelBui.Text = trackBarBuild.Value.ToString() + " 平方千米";
+
+
+
+        }
+
+        private void trackBar1_Scroll(object sender, EventArgs e)
+        {
+            trackBar1.Value = 0;
+            lab_unUsedLand.Text = trackBar1.Value.ToString();
         }
 
 
-        
     }
 }
